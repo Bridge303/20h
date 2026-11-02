@@ -1,27 +1,27 @@
 fun checklocation() {
-    pass
+    // pass
 }
 
 fun login() {
-    pass
+    // pass
 }
 
 fun aanmelden() {
-    pass
+    // pass
 }
 
 fun changeTimeAlert() {
-    pass
+    // pass
 }
 
 fun alert() {
-    pass
+    // pass
 }
 
 fun addToFamily() {
-    pass
+    // pass
 }
 
 fun changeUserType() {
-    pass
+    // pass
 }
