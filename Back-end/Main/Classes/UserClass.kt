@@ -22,6 +22,10 @@ open class User(
         this.is_user_child = true
         }
     }
+    // Change Name or phone number etc....
+    fun changeUserInfo() { 
+        //pass
+    }
     fun getUserInfo() : String 
     {
         return "Name: $name, Username: $user_name, Email: $email"
