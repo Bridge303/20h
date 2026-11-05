@@ -40,8 +40,8 @@ CREATE TABLE `accounts` (
   `emergency_contact_name` varchar(100) DEFAULT NULL,
   `emergency_contact_phone` varchar(20) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uq_accounts_email` (`email`)
+  PRIMARY KEY (`id`), --forces id to be unique, can't be NULL
+  UNIQUE KEY `uq_accounts_email` (`email`) --forces email to be unique, row chooses NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,10 +55,10 @@ DROP TABLE IF EXISTS `families`;
 CREATE TABLE `families` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `child_account_id` bigint unsigned NOT NULL,
-  `inactivity_threshold_hours` tinyint unsigned NOT NULL DEFAULT '20',
+  `inactivity_threshold_hours` tinyint unsigned NOT NULL DEFAULT '20', --default = 20
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uq_families_child` (`child_account_id`),
+  UNIQUE KEY `uq_families_child` (`child_account_id`), --forces child_id to be unique, row chooses NULL
   CONSTRAINT `fk_families_child` FOREIGN KEY (`child_account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,9 +77,29 @@ CREATE TABLE `family_parents` (
   `requested_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `accepted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`family_id`,`parent_account_id`),
-  KEY `idx_family_parents_parent` (`parent_account_id`),
-  CONSTRAINT `fk_fp_family` FOREIGN KEY (`family_id`) REFERENCES `families` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_fp_parent` FOREIGN KEY (`parent_account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE
+  KEY `index_family_parents_parent` (`parent_account_id`),
+  CONSTRAINT `fk_fp_family` FOREIGN KEY (`family_id`) REFERENCES `families` (`id`) ON DELETE CASCADE, -- deleting a family deletes its family_parents rows
+  CONSTRAINT `fk_fp_parent` FOREIGN KEY (`parent_account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE -- deleting an account deletes its links to families
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `locations`
+--
+
+DROP TABLE IF EXISTS `locations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `locations` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `account_id` bigint unsigned NOT NULL,
+  `latitude` decimal(8,6) NOT NULL,
+  `longitude` decimal(9,6) NOT NULL,
+  `error_radius_m` smallint unsigned DEFAULT NULL,
+  `recorded_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `index_locations_account_time` (`account_id`,`recorded_at`), -- index acc and time for faster search times.
+  CONSTRAINT `fk_locations_account` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -92,4 +112,4 @@ CREATE TABLE `family_parents` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-16 17:46:17
+-- Dump completed on 2026-11-05 15:03:00
