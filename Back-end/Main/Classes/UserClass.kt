@@ -30,6 +30,7 @@ open class User(
     {
         return "Name: $name, Username: $user_name, Email: $email"
     }
+    init { println("your account has been made! Hello $user_name!")}
 }
 
 
@@ -49,19 +50,34 @@ class Child(
             val latest_locations_list : MutableList<Location> = mutableListOf()
             ) : User(name, user_name, password, email, phone_number, user_ID, is_user_child)
 {
-    init 
-    {
-        if (this.child_family.isNullOrEmpty() && this.other_child_family_trees.isNullOrEmpty())
-        {
-            //Make a Familytree instantly upon becoming a child
-        } 
-    }
+    init {this.child_family.add(childMakeTree(this))} // Makes a familyTree for the child upon creation
+    
     fun inviteParentToFamilyTree(userID : Int, family_tree : FamilyTree) // Still have to add a way to check so not just anyone can add anybody to any famillytree
     {
         // var user : Parent 
         // // user = getuserfromdatabse(userID)                                   /**  fetch user itself not just Id but need Database for that */
         // family_tree.family_tree_members.add(user)
-      
+    }
+    fun makeParentAdministrator(userID : Int, family_tree : FamilyTree) 
+    {
+        var user_found = searchForUserInDatabase(userID)
+        if (checkUserSubClass(user_found) = 2) 
+        {
+            if (checkIfUserIsInTree(user_found,family_tree))
+            {
+                this.child_family.family_tree.family_tree_administrator.add(user_found)     // Might be wrong syntax to target the list
+            }
+            else 
+            {
+                var error : String = "makeParentAdministrator.personNotInFamilyTree"
+                println("Given person is not in your FamilyTree")
+            }
+        }
+        else 
+        {
+            var error : String = "makeParentAdministrator.personNotEligible"
+            println("Given person is not eligible to be Administrator of the FamilyTree")
+        }
     }
 }
 class Parent(
@@ -77,5 +93,5 @@ class Parent(
             var list_admin_trees : MutableList<FamilyTree> = mutableListOf()
             ) : User(name, user_name, password, email, phone_number, user_ID, is_user_child)
 {
-    
+
 }

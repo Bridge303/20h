@@ -1,4 +1,5 @@
 import Classes.User
+import Classes.Child
 import Classes.Location
 
 
@@ -14,7 +15,35 @@ fun changeTimeAlert() {
     // pass
 }
 
+//  Check if is adminstrator so not everybody can just change settings
+fun checkIfUserIsAdminstratorOfTree() : Boolean{
+    //pass
+}
 
+// Check if user is the "Child" Owner of a Tree 
+fun checkIfUserIsChildOwnerOfTree() : Boolean{
+    //pass 
+}
+
+    // Gives numbers from 1-X back and can see if User is undefined, just User, Parent or Child respectively
+fun checkUserSubClass(user : User) : Int{
+    //pass
+}
+
+// Checks if the user is in the given tree so it doesnt accidently change stuff when not in tree (safety check aswel)
+fun checkIfUserIsInTree(user : User, family_tree : FamilyTree) : Boolean {
+    //pass 
+}
+
+// Search for a user in database with given info and return the Object User itself
+fun searchForUserInDatabase(userID : Int) : User{
+    //pass
+}
+
+// makes a tree for the Child
+fun childMakeTree(user_making_the_tree : Child) : FamilyTree{
+    //pass
+}
 // server sided Alert to ping the family members
 // Different type of alerts :
 
@@ -38,7 +67,7 @@ fun login() {
 }
 
 // Make account 
-fun aanmelden() {
+fun signUp() {
     // pass
 }
 
