@@ -1,5 +1,7 @@
 package Classes
 
+
+
 //                          Main User class
 open class User(
                 var name : String,
@@ -12,17 +14,22 @@ open class User(
                 ) 
 {
     fun changeUserSubclass()                                // add / find way to change subclass !!!
-    {
-        if (is_user_child == true) 
+    {                                                       // Might be problems with the fact that if the user 
+        if (is_user_child == true)                          // - is not assigned something when this functions is called that its auto assigns subclass
         {
         this.is_user_child = false
         }
-        if (is_user_child == false) 
+        else if (is_user_child == false) 
         {
         this.is_user_child = true
         }
+        else 
+        {
+            var error : String = "User.ChangeUserSubclass.nonexistingsubclass"
+            println("Something went wrong when changing user Category")
+        }
     }
-    // Change Name or phone number etc....
+    // Change Name or phone number etc....      // try to not give the user free will by typing what thye wanna change only select * just saying for safety
     fun changeUserInfo() { 
         //pass
     }
@@ -30,7 +37,15 @@ open class User(
     {
         return "Name: $name, Username: $user_name, Email: $email"
     }
-    init { println("your account has been made! Hello $user_name!")}
+    fun getUserUserName() : String 
+    {
+        return "$user_name"
+    }
+    fun getUserID() : Int 
+    {
+        return user_ID
+    }
+    init { println("Your account has been made! Hello $user_name!")}
 }
 
 
@@ -50,13 +65,21 @@ class Child(
             val latest_locations_list : MutableList<Location> = mutableListOf()
             ) : User(name, user_name, password, email, phone_number, user_ID, is_user_child)
 {
-    init {this.child_family.add(childMakeTree(this))} // Makes a familyTree for the child upon creation
+    init {this.child_family.add(childMakeTree(this))} // Makes a familyTree for the child upon creation of Child(Object)
     
     fun inviteParentToFamilyTree(userID : Int, family_tree : FamilyTree) // Still have to add a way to check so not just anyone can add anybody to any famillytree
     {
-        // var user : Parent 
-        // // user = getuserfromdatabse(userID)                                   /**  fetch user itself not just Id but need Database for that */
-        // family_tree.family_tree_members.add(user)
+        var user : User 
+        user = searchForUserInDatabase(userID)   /**  fetch user itself not just Id but need Database for that */
+        if (checkUserSubClass == 2) 
+        {
+            family_tree.family_tree_members.add(user)
+        }                                
+        else 
+        {
+            var error : String = "Child.InviteParentToFamilyTree = isnotaParent"
+            println("The user you want to add is not a Caregiver")
+        }
     }
     fun makeParentAdministrator(userID : Int, family_tree : FamilyTree) 
     {

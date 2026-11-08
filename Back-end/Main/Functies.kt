@@ -5,8 +5,13 @@ import Classes.Location
 
 //         Server sided functions           //
 
+// Get a new location for user given
+fun getNewLocation(user : Child) : Location {
+
+}
+
 // Check latest given location by server
-fun checklocation() {
+fun checkLatestLocation(user : Child) : Location{
     // pass
 }
 
@@ -25,7 +30,7 @@ fun checkIfUserIsChildOwnerOfTree() : Boolean{
     //pass 
 }
 
-    // Gives numbers from 1-X back and can see if User is undefined, just User, Parent or Child respectively
+    // Gives numbers from 1-X back and can see if User is (0)undefined, just (1)User, (2)Parent or (3) Child respectively
 fun checkUserSubClass(user : User) : Int{
     //pass
 }
