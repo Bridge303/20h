@@ -6,12 +6,12 @@ import Classes.Location
 //         Server sided functions           //
 
 // Get a new location for user given
-fun getNewLocation(user : Child) : Location {
+fun getNewLocation(user : User) : Location {
 
 }
 
 // Check latest given location by server
-fun checkLatestLocation(user : Child) : Location{
+fun checkLatestLocation(user : User) : Location{
     // pass
 }
 
@@ -45,9 +45,20 @@ fun searchForUserInDatabase(userID : Int) : User{
     //pass
 }
 
-// makes a tree for the Child
-fun childMakeTree(user_making_the_tree : Child) : FamilyTree{
-    //pass
+// makes a tree for the Child       // Make sure that it doesnt need more information then possibly given upon creation for User.CHILD Init function
+fun childMakeTreeInitialization(user_making_the_tree : User) : FamilyTree{
+    if (user_making_the_tree.UserRole == CHILD) {
+        var thisUsersFamilyTree = FamilyTree(
+            family_first_child = user_making_the_tree,
+            family_extra_childs = mutableListOf(),
+            family_tree_administrator, mutableListOf(),
+            family_tree_members, mutableListOf(),
+        )
+    }
+    else{ 
+        println("You are not a Child so cannot make a FamilyTree")
+    }
+    return thisUsersFamilyTree
 }
 // server sided Alert to ping the family members
 // Different type of alerts :

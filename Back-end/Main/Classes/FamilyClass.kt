@@ -1,10 +1,11 @@
 package Classes
 
 class FamilyTree(
-                val family_first_child : Child ,
-                val family_extra_childs : MutableList<Child> = mutableListOf(),
-                val family_tree_administrator : MutableList<Parent> = mutableListOf(),
-                var family_tree_members : MutableList<Parent> = mutableListOf()
+                val family_first_child : User ,
+                val family_extra_childs : MutableList<User> = mutableListOf(),
+                val family_tree_administrator : MutableList<User> = mutableListOf(),
+                var family_tree_members : MutableList<User> = mutableListOf(),
+                var family_tree_name : String = "Family with no name yet"
                 ) 
 {
     fun getFamilyTreeChilds(): String 
