@@ -20,4 +20,5 @@ fun main ()
     var location1E = location1.retrieveLocation()
     println(location1E)
     println("TestSentence")
+    println(checkUserSubClass(user1))
 }

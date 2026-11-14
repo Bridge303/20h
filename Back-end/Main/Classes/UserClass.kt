@@ -2,6 +2,13 @@ package Classes
 
 
 //          Enum = Constant variables : either Parent or Child | So var Userole can only be one of it's CONSTANTS
+
+enum class ConnectionStatus {
+    CONNECTED,
+    DISCONNECTED,
+    PENDING
+}
+
 enum class UserRole {
     PARENT,
     CHILD
@@ -19,8 +26,11 @@ class User(
                 var user_role : UserRole
                 ) 
 {
+    init { println("Your account has been made! Hello $user_name!")}
+
     var parentData: ParentData? = null
     var childData : ChildData? = null
+
 
     fun changeUserRole(selected_role : UserRole)       // still needs some tweaks like when selecting one that x happens with other subclass                         
     {                                                     
@@ -36,6 +46,7 @@ class User(
                         // Fill in with requests for data 
                     )
                 }
+                // Delete the users ChildData?
             }
             UserRole.CHILD -> {
                 if (childData == null) 
@@ -45,24 +56,38 @@ class User(
                         // Fill in with request for data
                     )
                 }
+                // Delete the Users ParentData?
             }
         }
     }
-    // Change Name or phone number etc....      // try to not give the user free will by typing what thye wanna change only select * just saying for safety
-    fun changeUserInfo() { 
-        //pass
+    
+    // simple User user_name change
+    fun changeUserName(given_user_name : String) { 
+        user_name = given_user_name
+        println("Your user name is now $given_user_name")
     }
-    fun getUserInfo() : String 
-    {
+
+    fun changeUserPassword(){
+
+    }
+
+    fun changeUserEmail(){
+
+    }
+
+    fun changeUserPhoneNumber(){
+
+    }
+
+    fun getUserInfo() : String {
         return "Name: $name, Username: $user_name, Email: $email"
     }
-    fun getUserUserName() : String 
-    {
-        return "$user_name"
+
+    fun getUserUserName() : String {
+        return user_name
     }
-    fun getUserID() : Int 
-    {
+
+    fun getUserID() : Int {
         return user_ID
     }
-    init { println("Your account has been made! Hello $user_name!")}
 }

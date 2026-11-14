@@ -14,13 +14,23 @@ data class ChildData(
 
     init {child_familys.add(childMakeTreeInitialization(user_owner_of_data))} // Makes a familyTree for the child upon creation of Child(Object)
     
-
-    fun inviteParentToFamilyTree(userID : Int, family_tree : FamilyTree) // Still have to add a way to check so not just anyone can add anybody to any famillytree
-    {
-       
+    fun getAllChildFamilys() : MutableList<FamilyTree> {
+        return child_familys
     }
-    fun makeParentAdministrator(userID : Int, family_tree : FamilyTree) 
-    {
+    
+    fun getAllOtherChildFamilyTrees() : MutableList<FamilyTree> {
+        return other_child_family_trees
+    }
+
+    fun getAllEmergencyContacts() : MutableList<User> {
+        return emergency_contacts
+    }
+
+    fun inviteParentToFamilyTree(userID : Int, family_tree : FamilyTree) { // Still have to add a way to check so not just anyone can add anybody to any famillytree
+        
+    }
+
+    fun makeParentAdministrator(userID : Int, family_tree : FamilyTree) {
        
     }
 }

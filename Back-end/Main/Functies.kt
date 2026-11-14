@@ -42,9 +42,9 @@ fun checkIfUserIsChildOwnerOfTree() : Boolean{
 }
 
     // Gives numbers from 1-X back and can see if User is (0)undefined, just (1)User, (2)Parent or (3) Child respectively
-fun checkUserSubClass(user : User) : Int{
-    //pass
-    return 123
+fun checkUserSubClass(user : User) : UserRole{
+    var temp_user_UserRole = user.user_role
+    return temp_user_UserRole
 }
 
 // Checks if the user is in the given tree so it doesnt accidently change stuff when not in tree (safety check aswel)
@@ -75,7 +75,7 @@ fun childMakeTreeInitialization(user_making_the_tree : User) : FamilyTree{
         family_extra_childs = mutableListOf(),
         family_tree_administrator = mutableListOf(),
         family_tree_members = mutableListOf(),
-        family_tree_name = "noname"
+        family_tree_name = "noname" // should be a request for a name 
     )
     return thisUsersFamilyTree
 }
@@ -114,20 +114,9 @@ fun changeUserType() {
 
 
 
+//      Database <=> App Requests
 
 
-//          Not yet decided if general function or user specific            //
-
-
-
-var SHOULD_BE_FOR_PARENT_ADMINSTRATOR_AND_CHILD_ADMINSTRATOR_OF_FAMILYTREE = ""
-// Add somebody to the familytree as CHILD/ADMINISTRATOR of that familytree | User should be able to select which FamilyTree
-// Should be in UserClass               ???
-fun addToFamily(chosen_familytree : FamilyTree, chosen_user : User) {
-    // pass
+fun serverConnectionStatus(){
+    
 }
-
-
-
-
-
