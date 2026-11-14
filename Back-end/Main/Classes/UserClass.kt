@@ -3,7 +3,8 @@ package Classes
 
 //          Enum = Constant variables : either Parent or Child | So var Userole can only be one of it's CONSTANTS
 enum class UserRole {
-    PARENT,CHILD
+    PARENT,
+    CHILD
 }
 
 //                               Main : User  =>   Which can split into PARENT & CHILD

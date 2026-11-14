@@ -1,4 +1,5 @@
 package Classes
+import Functions.*
 
 
 
@@ -16,37 +17,10 @@ data class ChildData(
 
     fun inviteParentToFamilyTree(userID : Int, family_tree : FamilyTree) // Still have to add a way to check so not just anyone can add anybody to any famillytree
     {
-        var user : User 
-        user = searchForUserInDatabase(userID)   /**  fetch user itself not just Id but need Database for that */
-        if (checkUserSubClass == 2) 
-        {
-            family_tree.family_tree_members.add(user)
-        }                                
-        else 
-        {
-            var error : String = "Child.InviteParentToFamilyTree = isnotaParent"
-            println("The user you want to add is not a Caregiver")
-        }
+       
     }
     fun makeParentAdministrator(userID : Int, family_tree : FamilyTree) 
     {
-        var user_found = searchForUserInDatabase(userID)
-        if (checkUserSubClass(user_found) = 2) 
-        {
-            if (checkIfUserIsInTree(user_found,family_tree))
-            {
-                this.child_familys.family_tree.family_tree_administrator.add(user_found)     // Might be wrong syntax to target the list
-            }
-            else 
-            {
-                var error : String = "makeParentAdministrator.personNotInFamilyTree"
-                println("Given person is not in your FamilyTree")
-            }
-        }
-        else 
-        {
-            var error : String = "makeParentAdministrator.personNotEligible"
-            println("Given person is not eligible to be Administrator of the FamilyTree")
-        }
+       
     }
 }

@@ -1,18 +1,27 @@
-import Classes.User
-import Classes.Child
-import Classes.Location
-
+package Functions
+import Classes.*
 
 //         Server sided functions           //
 
 // Get a new location for user given
 fun getNewLocation(user : User) : Location {
-
+    var locationExmple =  Location(
+        1.21,
+        1.21,
+        1.23
+    )
+    return locationExmple
 }
 
 // Check latest given location by server
 fun checkLatestLocation(user : User) : Location{
     // pass
+    var locationExmple = Location(
+        1.21,
+        1.21,
+        1.23
+    )
+    return locationExmple
 }
 
 // change the timer for when the sever should ping 
@@ -23,41 +32,51 @@ fun changeTimeAlert() {
 //  Check if is adminstrator so not everybody can just change settings
 fun checkIfUserIsAdminstratorOfTree() : Boolean{
     //pass
+    return false
 }
 
 // Check if user is the "Child" Owner of a Tree 
 fun checkIfUserIsChildOwnerOfTree() : Boolean{
     //pass 
+    return false 
 }
 
     // Gives numbers from 1-X back and can see if User is (0)undefined, just (1)User, (2)Parent or (3) Child respectively
 fun checkUserSubClass(user : User) : Int{
     //pass
+    return 123
 }
 
 // Checks if the user is in the given tree so it doesnt accidently change stuff when not in tree (safety check aswel)
 fun checkIfUserIsInTree(user : User, family_tree : FamilyTree) : Boolean {
     //pass 
+    return false
 }
 
 // Search for a user in database with given info and return the Object User itself
 fun searchForUserInDatabase(userID : Int) : User{
     //pass
+    val user1 = User(
+        "Name1",
+        "username1",
+        "124azeza",
+        "emailofUserOne",
+        12521523,
+        321312,
+        UserRole.CHILD
+    )
+    return user1
 }
 
 // makes a tree for the Child       // Make sure that it doesnt need more information then possibly given upon creation for User.CHILD Init function
 fun childMakeTreeInitialization(user_making_the_tree : User) : FamilyTree{
-    if (user_making_the_tree.UserRole == CHILD) {
-        var thisUsersFamilyTree = FamilyTree(
-            family_first_child = user_making_the_tree,
-            family_extra_childs = mutableListOf(),
-            family_tree_administrator, mutableListOf(),
-            family_tree_members, mutableListOf(),
-        )
-    }
-    else{ 
-        println("You are not a Child so cannot make a FamilyTree")
-    }
+    var thisUsersFamilyTree = FamilyTree(
+        family_first_child = user_making_the_tree,
+        family_extra_childs = mutableListOf(),
+        family_tree_administrator = mutableListOf(),
+        family_tree_members = mutableListOf(),
+        family_tree_name = "noname"
+    )
     return thisUsersFamilyTree
 }
 // server sided Alert to ping the family members
@@ -104,7 +123,7 @@ fun changeUserType() {
 var SHOULD_BE_FOR_PARENT_ADMINSTRATOR_AND_CHILD_ADMINSTRATOR_OF_FAMILYTREE = ""
 // Add somebody to the familytree as CHILD/ADMINISTRATOR of that familytree | User should be able to select which FamilyTree
 // Should be in UserClass               ???
-fun addToFamily(var chosen_familytree : FamilyTree,var chosen_user : User) {
+fun addToFamily(chosen_familytree : FamilyTree, chosen_user : User) {
     // pass
 }
 

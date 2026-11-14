@@ -1,4 +1,5 @@
 package Classes
+import Functions.*
 
 data class ParentData(
             val user_owner_of_data : User,
@@ -7,13 +8,13 @@ data class ParentData(
             )
 {
     fun acceptInviteToFamilyTree(given_familytree : FamilyTree) : Boolean{  // Accepting an invite from a Child/Administrator of FamilyTree to join
-        answer = false 
+        var answer = false 
 
         return answer 
     }
     fun inviteChildToTreeIfAdministrator(given_familytree : FamilyTree,child_to_be_invited : User) {    // invite a child to the tree if the parent is adminsitrator of the tree
         if (given_familytree.family_tree_administrator == user_owner_of_data ) {
-            if (child_to_be_invited.UserRole == CHILD) {
+            if (child_to_be_invited.user_role == UserRole.CHILD) {
                 given_familytree.family_extra_childs.add(child_to_be_invited)
             }
             else {
@@ -21,7 +22,7 @@ data class ParentData(
             }
         }
         else {
-            printl("You are not an Administrator of the Family, so you dont have the capability of inviting somebody.")
+            println("You are not an Administrator of the Family, so you dont have the capability of inviting somebody.")
         }
     }
 }

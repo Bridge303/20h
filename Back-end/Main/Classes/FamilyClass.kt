@@ -41,7 +41,7 @@ class FamilyTree(
         return "Members: $temp_extra_members_list"  
     }
 
-    fun getFamilyTreeFirstChild(): Child
+    fun getFamilyTreeFirstChild(): User
     {
         val temp_family_first_child = this.family_first_child
         return temp_family_first_child 
