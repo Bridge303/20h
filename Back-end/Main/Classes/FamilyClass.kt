@@ -8,6 +8,10 @@ class FamilyTree(
                 var family_tree_name : String = "Family with no name yet"
                 ) 
 {
+    fun getFamilyTreeName() : String {
+        return family_tree_name
+    }
+
     fun getFamilyTreeChilds(): String 
     {
         var temp_extra_child_list = ""

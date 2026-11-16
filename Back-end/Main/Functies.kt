@@ -107,16 +107,23 @@ fun signUp() {
 }
 
 
-// Change user from parent or child or just User to either 
-fun changeUserType() {
-    // pass
-}
-
 
 
 //      Database <=> App Requests
 
 
-fun serverConnectionStatus(){
-    
-}
+// fun serverConnectionStatus() : ConnectionStatus{
+//     if (ConnectionStatus == PENDING) {
+//         println("You are still attempting connecting with the servers of the App")
+//         return PENDING
+//     }
+//     if (ConnectionStatus == CONNECTED) {
+//         println("You are Connected with the servers of the App")
+//         return CONNECTED
+//     }
+//     if (ConnectionStatus == DISCONNECTED) {
+//         println("You are Disconnected with the servers of the App")
+//         return DISCONNECTED
+//     }
+//     return UNKNOWN
+// }

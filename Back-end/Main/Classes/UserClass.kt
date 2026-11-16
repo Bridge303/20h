@@ -1,12 +1,13 @@
 package Classes
-
+import Functions.*
 
 //          Enum = Constant variables : either Parent or Child | So var Userole can only be one of it's CONSTANTS
 
 enum class ConnectionStatus {
     CONNECTED,
     DISCONNECTED,
-    PENDING
+    PENDING,
+    UNKNOWN
 }
 
 enum class UserRole {
@@ -43,8 +44,12 @@ class User(
                 {
                     parentData = ParentData(
                         user_owner_of_data = this,
-                        // Fill in with requests for data 
+                        // Fill in with requests for possible data 
                     )
+                    println("You are now a Parent!")
+                }
+                else {
+                    println("You already are a Parent as role.")
                 }
                 // Delete the users ChildData?
             }
@@ -53,8 +58,12 @@ class User(
                 {
                     childData = ChildData(
                         user_owner_of_data = this
-                        // Fill in with request for data
+                        // Fill in with request for possible data
                     )
+                    println("You are now a care-receiver!")
+                }
+                else {
+                    println("You already are a care-receiver as role.")
                 }
                 // Delete the Users ParentData?
             }
@@ -89,5 +98,19 @@ class User(
 
     fun getUserID() : Int {
         return user_ID
+    }
+
+    fun inviteMemberToFamilyTree(userID : Int, family_tree : FamilyTree) { // Still have to add a way to check so not just anyone can add anybody to any famillytree
+        if (this in family_tree.family_tree_administrator || this == family_tree.family_first_child){
+            var temp_user = searchForUserInDatabase(userID)
+            var temp_user_name = temp_user.getUserUserName()
+            var temp_family_tree_name = family_tree.getFamilyTreeName()
+            family_tree.family_tree_members.add(searchForUserInDatabase(userID))
+
+            println("The person $temp_user_name has been added to the members list of familytree : $temp_family_tree_name")
+        }
+        else{
+            println("You do not have the rights to do these actions.")
+        }
     }
 }
