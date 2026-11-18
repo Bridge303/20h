@@ -33,6 +33,22 @@ class User(
     var childData : ChildData? = null
 
 
+    // this is a Check for wheter or not the user who uses a function 1. has that role to do so 2. wether it has initialized data of that role
+    // this avoids crashes or unexpected behavior when calling a function
+    fun <T> withParentData(action: ParentData.() -> T): T? {
+        if (user_role != UserRole.PARENT) { println("User is not a Parent"); return null}
+        if(parentData == null)  { println("User does not have PARENT DATA"); return null}
+        return parentData?.action()
+    }   
+    // this is a Check for wheter or not the user who uses a function 1. has that role to do so 2. wether it has initialized data of that role
+    // this avoids crashes or unexpected behavior when calling a function
+    fun <T> withChildData(action: ChildData.() -> T): T? {      
+        if (user_role != UserRole.CHILD) { println("User is not a Child"); return null}
+        if(childData == null)  { println("User does not have CHILD DATA"); return null}
+        return childData?.action()
+    }
+
+
     fun changeUserRole(selected_role : UserRole)       // still needs some tweaks like when selecting one that x happens with other subclass                         
     {                                                     
         user_role = selected_role

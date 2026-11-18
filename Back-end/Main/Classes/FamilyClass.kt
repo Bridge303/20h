@@ -5,7 +5,8 @@ class FamilyTree(
                 val family_extra_childs : MutableList<User> = mutableListOf(),
                 val family_tree_administrator : MutableList<User> = mutableListOf(),
                 var family_tree_members : MutableList<User> = mutableListOf(),
-                var family_tree_name : String = "Family with no name yet"
+                var family_tree_name : String = "Family with no name yet",
+                var family_tree_ID : Int = 24      // still need to work on familytree identifiers
                 ) 
 {
     fun getFamilyTreeName() : String {
