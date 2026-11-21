@@ -1,12 +1,18 @@
 package Classes
 
 class FamilyTree(
-                val family_first_child : Child ,
-                val family_extra_childs : MutableList<Child> = mutableListOf(),
-                val family_tree_administrator : MutableList<Parent> = mutableListOf(),
-                var family_tree_members : MutableList<Parent> = mutableListOf()
+                val family_first_child : User ,
+                val family_extra_childs : MutableList<User> = mutableListOf(),
+                val family_tree_administrator : MutableList<User> = mutableListOf(),
+                var family_tree_members : MutableList<User> = mutableListOf(),
+                var family_tree_name : String = "Family with no name yet",
+                var family_tree_ID : Int = 24      // still need to work on familytree identifiers
                 ) 
 {
+    fun getFamilyTreeName() : String {
+        return family_tree_name
+    }
+
     fun getFamilyTreeChilds(): String 
     {
         var temp_extra_child_list = ""
@@ -40,7 +46,7 @@ class FamilyTree(
         return "Members: $temp_extra_members_list"  
     }
 
-    fun getFamilyTreeFirstChild(): Child
+    fun getFamilyTreeFirstChild(): User
     {
         val temp_family_first_child = this.family_first_child
         return temp_family_first_child 

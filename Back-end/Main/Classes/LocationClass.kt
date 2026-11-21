@@ -6,7 +6,7 @@ class Location (
                 var latitude : Double
                 )
 {
-    fun retrieveLocation() : Location {
-        return this
+    fun getLocationData() : String {    // just prints the location
+        return "#OfLocation : $assigned_number_of_latest_know_location, lon : $longitude, lat : $latitude"
     }
 }
